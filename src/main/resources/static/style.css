@@ -1,133 +1,221 @@
 /* 全画面の背景画像 */
 .fullscreen-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
 }
 
-.fullscreen-bg__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover; /* 画像が枠に合わせて調整される */
+/* 動画を背景として使用する場合 */
+.fullscreen-bg__video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; /* イメージや他のコンテンツの背後に配置 */
 }
 
-/* ヘッダー */
+/* ヘッダー全体 */
 .header {
-    position: relative;
-    background: transparent;
-    color: #fff;
-    text-align: center;
-    z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 左にロゴとタイトル、右にナビゲーションメニュー */
+  padding: 10px 20px;
+  background: transparent;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
-.subtitle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 透明度を持つ黒背景 */
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+/* ロゴスタイル（テキストと画像） */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 左寄せに */
 }
 
-.body {
-  font-family: 'sans-serif';
+/* ロゴ画像 */
+.logo img {
+  height: 50px; /* ロゴ画像の高さ */
+  margin-right: 10px; /* ロゴ画像とタイトルの間隔 */
+}
+
+/* タイトル */
+.logo h1 {
+  margin: 0;
+}
+
+.logo h1 {
+  display: inline; /* h1をインライン要素にする */
+  vertical-align: middle; /* ロゴとテキストを中央揃え */
+}
+
+/* ナビゲーションメニュー */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+/* ナビゲーションスタイル */
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  padding: 0 15px; /* ナビゲーションリンクの間隔 */
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ddd; /* ホバー時の色 */
+}
+
+/* メインコンテンツテキストのスタイル */
+.content p {
+  color: #fff;
   margin: 0;
   padding: 0;
-  background: #f0f0f0;
+}
+/* 特定のテキストを強調 */
+.content .project-success {
+  font-size: 3em;  /* 3倍より大きいサイズに設定 */
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 20px; /* 上部の余白を設定 */
 }
 
-.header {
-  background: #333;
-  color: #fff;
-  padding: 10px 20px;
-  text-align: center;
-}
-
-.content {
-  padding: 20px;
-}
-
+/* フッターのスタイル */
 .footer {
   background: #333;
   color: #fff;
   padding: 10px 20px;
   text-align: center;
+  position: fixed; /* フッターを固定 */
+  width: 100%; /* 幅を100%に設定 */
+  bottom: 0; /* 下部から0pxの位置に設定 */
+  z-index: 1000; /* 動画よりも前面に表示 */
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5); /* テキストの影を設定 */
+}
+
+/* 動画を背景にするためのスタイル */
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100; /* バックグラウンドに配置 */
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; /* イメージや他のコンテンツの背後に配置 */
+}
+
+/* コンテンツを中央に配置し、大きなテキストにするスタイル */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* 動画の上に配置 */
+  color: #fff; /* 文字色は白 */
+  text-align: center; /* 中央揃え */
+  font-size: 2em; /* フォントサイズを大きく */
+  font-weight: bold; /* フォントを太く */
+  width: 80%; /* コンテンツの幅を80%に設定 */
+  max-width: 1200px; /* 最大幅を設定 */
 }
 
 /* スライドショーのコンテナ */
 .slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
-  }
-  
-  /* スライドをフェードする */
-  .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-  
-  /* 次・前のコントロールのスタイル */
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-  }
-  
-  /* 位置指定 */
-  .prev {
-    left: 0;
-    border-radius: 3px 0 0 3px;
-  }
-  
-  .next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-  }
-  
-  /* ドットのコントロールのスタイル */
-  .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-  }
-  
-  .active, .dot:hover {
-    background-color: #717171;
-  }
-  
-  /* アニメーション */
-  @-webkit-keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
-  
-  @keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* スライドをフェードする */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+/* 次・前のコントロールのスタイル */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* 位置指定 */
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* ドットのコントロールのスタイル */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* アニメーション */
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
